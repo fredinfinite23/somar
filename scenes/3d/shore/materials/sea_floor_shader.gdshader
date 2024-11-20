@@ -1,6 +1,7 @@
 shader_type spatial;
 
 uniform vec4 albedo : source_color;
+uniform vec4 border_color : source_color;
 uniform sampler2D texture_albedo : source_color, filter_linear_mipmap, repeat_enable;
 uniform sampler2D texture_mask;
 uniform sampler2D shadow_map;
@@ -26,11 +27,13 @@ void fragment() {
 	
 	float shadow_map_value = clamp(texture(shadow_map, UV2).r, shadow_min_opacity, 1.0);
 	
-	ALBEDO = albedo.rgb * albedo_tex.rgb * shadow_map_value;
+	vec3 alb = albedo.rgb * albedo_tex.rgb * shadow_map_value;
+	
+	ALBEDO = mix(alb, border_color.rgb, mask_tex.rgb);
 
 	METALLIC = metallic;
 	SPECULAR = specular;
 	ROUGHNESS = roughness;
 	
-	ALPHA = mask_tex.r;
+	//ALPHA = mask_tex.r;
 }
