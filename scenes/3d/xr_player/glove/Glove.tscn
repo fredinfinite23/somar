@@ -1,9 +1,9 @@
 [gd_scene load_steps=32 format=3 uid="uid://cmb7inmiduyap"]
 
-[ext_resource type="Script" path="res://scenes/3d/xr_player/glove/glove.gd" id="1_ywjng"]
+[ext_resource type="Script" uid="uid://c6gkimmp3ipde" path="res://scenes/3d/xr_player/glove/glove.gd" id="1_ywjng"]
 [ext_resource type="ArrayMesh" uid="uid://r2ae1p2bqbog" path="res://scenes/3d/xr_player/glove/mesh/gloves_animated_Mesh_005.res" id="2_ktth0"]
 [ext_resource type="Material" uid="uid://cc7p32h5uo8gp" path="res://scenes/3d/xr_player/glove/materials/glove_material_low.tres" id="3_4b6rw"]
-[ext_resource type="Script" path="res://utilities/CustomMeshInstance3D.gd" id="4_3bg08"]
+[ext_resource type="Script" uid="uid://bqwm7ba7t8t1v" path="res://utilities/CustomMeshInstance3D.gd" id="4_3bg08"]
 [ext_resource type="Material" uid="uid://g788pbrkpdin" path="res://scenes/3d/xr_player/glove/materials/glove_material_hq.tres" id="5_lqdg8"]
 
 [sub_resource type="Skin" id="Skin_5700v"]
@@ -607,10 +607,10 @@ tracks/17/keys = PackedFloat32Array(0, 1, 0.0981467, -0.0571284, -0.0706514, 0.9
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_jdy45"]
 _data = {
-"fist": SubResource("Animation_pymca"),
-"grab": SubResource("Animation_iq4km"),
-"rest": SubResource("Animation_gp6vs"),
-"trigger": SubResource("Animation_8f1u0")
+&"fist": SubResource("Animation_pymca"),
+&"grab": SubResource("Animation_iq4km"),
+&"rest": SubResource("Animation_gp6vs"),
+&"trigger": SubResource("Animation_8f1u0")
 }
 
 [sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_vpfmj"]

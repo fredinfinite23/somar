@@ -1,6 +1,6 @@
 [gd_scene load_steps=5 format=3 uid="uid://d1pk5n2bivdw1"]
 
-[ext_resource type="Script" path="res://scenes/3d/animals/whales/whale_path.gd" id="1_x27gy"]
+[ext_resource type="Script" uid="uid://cxwtt5h5kg5gf" path="res://scenes/3d/animals/whales/whale_path.gd" id="1_x27gy"]
 [ext_resource type="Curve3D" uid="uid://uqbwg4xiay3w" path="res://scenes/3d/animals/whales/humpback/paths/path_1.tres" id="2_4v865"]
 [ext_resource type="AudioStream" uid="uid://8qgeb87k4r21" path="res://scenes/3d/animals/whales/blue/audio/blue_whale_call.wav" id="2_exlci"]
 [ext_resource type="PackedScene" uid="uid://dnnemhl23km37" path="res://scenes/3d/animals/whales/blue/blue_whale.tscn" id="5_p1mtd"]

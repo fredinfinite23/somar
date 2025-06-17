@@ -2,7 +2,7 @@
 
 [ext_resource type="Shader" uid="uid://bufpt1ntjbbl4" path="res://scenes/3d/boats/inflatable_patrol/materials/boat_color_w_height_shader.tres" id="1_jpjfy"]
 [ext_resource type="ArrayMesh" uid="uid://cy2xjgvv5cv1c" path="res://scenes/3d/boats/jetski/mesh/jet_ski_Jet_Ski.res" id="1_s6wo2"]
-[ext_resource type="Script" path="res://scenes/3d/boats/boat_base.gd" id="1_u1vak"]
+[ext_resource type="Script" uid="uid://dnek7gy624faf" path="res://scenes/3d/boats/boat_base.gd" id="1_u1vak"]
 [ext_resource type="Texture2D" uid="uid://bqb8k4oxqim6r" path="res://scenes/3d/boats/jetski/textures/FINAL_jetski_1001_BaseColor.png" id="2_3kwq2"]
 [ext_resource type="ArrayMesh" uid="uid://ihqi778jrrt3" path="res://scenes/3d/boats/jetski/mesh/jet_ski_Jet_Ski_002.res" id="2_sokn1"]
 [ext_resource type="Material" uid="uid://hqwjtq758vqy" path="res://scenes/3d/boats/inflatable_patrol/materials/inflatable_patrol_boat_hull_bottom_mat.tres" id="2_udrpi"]
@@ -29,15 +29,15 @@ point_count = 2
 render_priority = 0
 shader = ExtResource("1_jpjfy")
 shader_parameter/albedo_color = Color(1, 1, 1, 1)
+shader_parameter/albedo_texture = ExtResource("2_3kwq2")
 shader_parameter/metallic = 0.3
 shader_parameter/roughness = 0.5
 shader_parameter/specular = 1.0
-shader_parameter/albedo_texture = ExtResource("2_3kwq2")
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_bxgh5"]
 _data = {
-"boat_movement": ExtResource("3_i1f0k"),
-"idle": ExtResource("4_jdjht")
+&"boat_movement": ExtResource("3_i1f0k"),
+&"idle": ExtResource("4_jdjht")
 }
 
 [sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_i8j0n"]
@@ -76,8 +76,7 @@ material = ExtResource("5_6q7vc")
 size = Vector2(0.4, 0.4)
 
 [sub_resource type="Curve" id="Curve_rvdav"]
-min_value = 0.1
-max_value = 1.5
+_limits = [0.1, 1.5, 0.0, 1.0]
 _data = [Vector2(0, 0.1), 0.0, 4.32781, 0, 0, Vector2(1, 1.5), 0.0, 0.0, 0, 0]
 point_count = 2
 

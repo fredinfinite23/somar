@@ -1,6 +1,6 @@
 [gd_scene load_steps=5 format=3 uid="uid://bj2rnx5gjelic"]
 
-[ext_resource type="Script" path="res://scenes/3d/shore/secondary_boats/shore_jet_ski.gd" id="1_n62x3"]
+[ext_resource type="Script" uid="uid://bt88ytv4gs1mv" path="res://scenes/3d/shore/secondary_boats/shore_jet_ski.gd" id="1_n62x3"]
 [ext_resource type="PackedScene" uid="uid://bfofa0fijqdni" path="res://scenes/3d/boats/jetski/jet_ski.tscn" id="2_giij2"]
 [ext_resource type="AudioStream" uid="uid://0dtd5tu1e1rd" path="res://scenes/3d/boats/jetski/audio/jetski_sfx2_loud.wav" id="3_tn2yw"]
 

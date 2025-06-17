@@ -1,8 +1,8 @@
 [gd_scene load_steps=8 format=3 uid="uid://cuwcpccmansiv"]
 
-[ext_resource type="Script" path="res://scenes/3d/main_menu/return_to_main_menu.gd" id="1_0ma4e"]
-[ext_resource type="Script" path="res://utilities/CustomBtn.gd" id="2_ewjf2"]
-[ext_resource type="Shader" path="res://scenes/3d/main_menu/materials/main_menu_long_press_btn_shader.gdshader" id="3_y8lxl"]
+[ext_resource type="Script" uid="uid://21bywc08t7tp" path="res://scenes/3d/main_menu/return_to_main_menu.gd" id="1_0ma4e"]
+[ext_resource type="Script" uid="uid://d0mh6raybhr71" path="res://utilities/CustomBtn.gd" id="2_ewjf2"]
+[ext_resource type="Shader" uid="uid://csdjghf8hq8yh" path="res://scenes/3d/main_menu/materials/main_menu_long_press_btn_shader.gdshader" id="3_y8lxl"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_wvm6j"]
 render_priority = 0
@@ -23,11 +23,12 @@ height = 0.038
 radius = 1.25
 
 [node name="ReturnToMainMenu" type="Node3D" groups=["change_with_input"]]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.9575, 0)
 script = ExtResource("1_0ma4e")
 
 [node name="ReturnToMainMenuBtn" type="Area3D" parent="."]
 unique_name_in_owner = true
-transform = Transform3D(0.8, 0, 0, 0, -2.38419e-07, 0.8, 0, -0.8, -2.38419e-07, 0, 0, 0)
+transform = Transform3D(0.8, 0, 0, 0, 3.08357e-07, -0.8, 0, 0.8, 3.08357e-07, 0, 0, 0)
 collision_layer = 4
 collision_mask = 0
 monitoring = false
