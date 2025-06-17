@@ -12,8 +12,14 @@ config_version=5
 
 config/name="SOMAR"
 run/main_scene="res://scenes/main/main.tscn"
-config/features=PackedStringArray("4.3", "GL Compatibility")
+config/features=PackedStringArray("4.4", "GL Compatibility")
 config/icon="res://icon.svg"
+
+[audio]
+
+buses/default_bus_layout="uid://bx23klqhbmjkf"
+driver/mix_rate=48000
+output_channels=8
 
 [autoload]
 
@@ -24,8 +30,9 @@ AudioManager="*res://autoloads/AudioManager.gd"
 
 [display]
 
-window/size/viewport_width=1280
-window/size/viewport_height=720
+window/size/viewport_width=1080
+window/size/viewport_height=1080
+window/size/borderless=true
 
 [editor_plugins]
 
@@ -56,11 +63,11 @@ lights_and_shadows/positional_shadow/soft_shadow_filter_quality=0
 reflections/sky_reflections/texture_array_reflections=false
 shading/overrides/force_vertex_shading=true
 shading/overrides/force_lambert_over_burley=true
+anti_aliasing/quality/msaa_3d=1
 limits/opengl/max_renderable_elements=16384
 limits/opengl/max_renderable_lights=2
 limits/opengl/max_lights_per_object=2
 environment/defaults/default_clear_color=Color(0, 0, 0, 1)
-anti_aliasing/quality/msaa_3d=1
 lights_and_shadows/positional_shadow/atlas_size=256
 lights_and_shadows/positional_shadow/atlas_size.mobile=256
 environment/defaults/default_environment="res://scenes/3d/xr_player/default_environment.tres"
@@ -82,8 +89,5 @@ water_surface_height={
 
 [xr]
 
-openxr/enabled=true
 openxr/foveation_level=3
 openxr/foveation_dynamic=true
-openxr/extensions/hand_tracking=false
-shaders/enabled=true

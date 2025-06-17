@@ -1,0 +1,13 @@
+[gd_scene load_steps=4 format=3 uid="uid://c4kasevntttn2"]
+
+[ext_resource type="Shader" uid="uid://c2ixqn5tk0y2a" path="res://addons/camera360/FisheyeFromCubeMap.gdshader" id="1_dwh15"]
+[ext_resource type="Script" uid="uid://de0t2ljfegi6h" path="res://addons/camera360/FisheyeFromCubemap.gd" id="2_dwh15"]
+
+[sub_resource type="ShaderMaterial" id="2"]
+shader = ExtResource("1_dwh15")
+
+[node name="Fisheye" type="ColorRect"]
+material = SubResource("2")
+offset_right = 2048.0
+offset_bottom = 2048.0
+script = ExtResource("2_dwh15")

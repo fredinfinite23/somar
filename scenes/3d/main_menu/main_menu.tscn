@@ -1,8 +1,8 @@
 [gd_scene load_steps=13 format=3 uid="uid://p0yx1ovcqwpd"]
 
-[ext_resource type="Shader" path="res://scenes/3d/main_menu/materials/main_menu_long_press_btn_shader.gdshader" id="1_kdp3t"]
-[ext_resource type="Script" path="res://utilities/CustomBtn.gd" id="1_mi14x"]
-[ext_resource type="Script" path="res://scenes/3d/main_menu/main_menu.gd" id="1_ybh1f"]
+[ext_resource type="Shader" uid="uid://csdjghf8hq8yh" path="res://scenes/3d/main_menu/materials/main_menu_long_press_btn_shader.gdshader" id="1_kdp3t"]
+[ext_resource type="Script" uid="uid://d0mh6raybhr71" path="res://utilities/CustomBtn.gd" id="1_mi14x"]
+[ext_resource type="Script" uid="uid://dr7usflcxx27i" path="res://scenes/3d/main_menu/main_menu.gd" id="1_ybh1f"]
 [ext_resource type="Texture2D" uid="uid://1cwryh8ym7jv" path="res://scenes/3d/main_menu/textures/main_menu_equi_v2_1k.png" id="2_hjdxi"]
 
 [sub_resource type="PanoramaSkyMaterial" id="PanoramaSkyMaterial_476vf"]
@@ -46,6 +46,7 @@ size = Vector3(3.5, 2, 0.015)
 
 [node name="MainMenu" type="Node3D" node_paths=PackedStringArray("player_position") groups=["change_with_input"]]
 script = ExtResource("1_ybh1f")
+menu_option = 1
 player_position = NodePath("PlayerPosition")
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]

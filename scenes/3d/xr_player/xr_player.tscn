@@ -1,18 +1,19 @@
-[gd_scene load_steps=23 format=3 uid="uid://c6boq0tgrmmw4"]
+[gd_scene load_steps=20 format=3 uid="uid://c6boq0tgrmmw4"]
 
-[ext_resource type="Script" path="res://scenes/3d/xr_player/xr_player.gd" id="1_wh4gs"]
+[ext_resource type="Script" uid="uid://bpg2ygmw7g264" path="res://scenes/3d/xr_player/xr_player.gd" id="1_wh4gs"]
 [ext_resource type="Material" uid="uid://bqhhywt0sjd07" path="res://scenes/3d/main_menu/materials/pointer_material.tres" id="2_bxq6t"]
-[ext_resource type="Shader" path="res://scenes/3d/xr_player/materials/splashscreen_logo_shader.gdshader" id="2_u00bx"]
+[ext_resource type="PackedScene" uid="uid://dmqfdfgg772md" path="res://addons/camera360/CubeCam.tscn" id="2_cotbs"]
+[ext_resource type="Shader" uid="uid://p4xqtr813xji" path="res://scenes/3d/xr_player/materials/splashscreen_logo_shader.gdshader" id="2_u00bx"]
 [ext_resource type="Texture2D" uid="uid://cvqbgi7dt66rg" path="res://scenes/3d/xr_player/textures/somar_logo_1k.png" id="3_w25i8"]
 [ext_resource type="PackedScene" uid="uid://cipgn16i6g2k3" path="res://utilities/shader_cache/shader_cache.tscn" id="4_d5jj2"]
 [ext_resource type="Texture2D" uid="uid://drchxnkh61i53" path="res://scenes/3d/xr_player/textures/collabora_logo_1k.png" id="4_l8pby"]
 [ext_resource type="PackedScene" uid="uid://dabtp6yj17yab" path="res://utilities/shader_cache/particles_shader_cache.tscn" id="6_u7mu1"]
-[ext_resource type="Material" uid="uid://6p4v5wm3wwqr" path="res://scenes/3d/xr_player/materials/vignette_material.tres" id="7_lhpba"]
 [ext_resource type="Material" uid="uid://dpalyf7rbbo6s" path="res://scenes/3d/xr_player/materials/ray_material.tres" id="7_w3nnu"]
 [ext_resource type="PackedScene" uid="uid://cmb7inmiduyap" path="res://scenes/3d/xr_player/glove/Glove.tscn" id="8_h8gw4"]
 [ext_resource type="AudioStream" uid="uid://gaxxcehek2nw" path="res://scenes/3d/xr_player/audio/background_ambient_v2.wav" id="10_fuxwj"]
 [ext_resource type="Material" uid="uid://b6bsyyd4h318g" path="res://scenes/3d/shared/materials/sun_rays_material.tres" id="11_bfnmn"]
 [ext_resource type="AudioStream" uid="uid://bvnq7rqm5s8nw" path="res://scenes/3d/xr_player/audio/submerge_sfx.wav" id="12_hucca"]
+[ext_resource type="PackedScene" uid="uid://c4kasevntttn2" path="res://addons/camera360/FisheyeFromCubemap.tscn" id="14_gc58u"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_v6qvq"]
 render_priority = 100
@@ -21,43 +22,6 @@ shader_parameter/logo = ExtResource("3_w25i8")
 shader_parameter/logo_back = ExtResource("4_l8pby")
 
 [sub_resource type="QuadMesh" id="QuadMesh_oyqt1"]
-
-[sub_resource type="Animation" id="Animation_2st74"]
-length = 0.001
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("SplashScreenLogos:rotation")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [Vector3(0, 0, 0)]
-}
-
-[sub_resource type="Animation" id="Animation_qvle0"]
-resource_name = "logo_animation"
-length = 5.0
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("SplashScreenLogos:rotation")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0, 1.76667, 2.26667, 2.73333, 5.03333),
-"transitions": PackedFloat32Array(1, 1, 1, 1, 1),
-"update": 0,
-"values": [Vector3(0, 0, 0), Vector3(0, 0, 0), Vector3(0, -0.174533, 0), Vector3(0, -3.14159, 0), Vector3(0, -3.14159, 0)]
-}
-
-[sub_resource type="AnimationLibrary" id="AnimationLibrary_1h4pu"]
-_data = {
-"RESET": SubResource("Animation_2st74"),
-"logo_animation": SubResource("Animation_qvle0")
-}
 
 [sub_resource type="QuadMesh" id="QuadMesh_anvmr"]
 size = Vector2(0.04, 0.04)
@@ -70,9 +34,6 @@ height = 1.0
 radial_segments = 8
 cap_bottom = false
 
-[sub_resource type="QuadMesh" id="QuadMesh_6cwgg"]
-size = Vector2(2, 2)
-
 [sub_resource type="CylinderMesh" id="CylinderMesh_3y5pf"]
 flip_faces = true
 bottom_radius = 1.0
@@ -81,44 +42,41 @@ radial_segments = 16
 cap_top = false
 cap_bottom = false
 
-[node name="XrPlayer" type="XROrigin3D"]
+[node name="XrPlayer" type="Node3D"]
 script = ExtResource("1_wh4gs")
+panorama_mode = true
 
-[node name="XRCamera3D" type="XRCamera3D" parent="."]
+[node name="CubeCam" parent="." instance=ExtResource("2_cotbs")]
 unique_name_in_owner = true
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.8, 0)
+transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 0, 1.34, 0)
 
-[node name="ShaderCacheContainer" type="Node3D" parent="XRCamera3D"]
+[node name="ShaderCacheContainer" type="Node3D" parent="."]
 unique_name_in_owner = true
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -3.48841)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.8, -3.48841)
 
-[node name="DirectionalLight3D" type="DirectionalLight3D" parent="XRCamera3D/ShaderCacheContainer"]
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="ShaderCacheContainer"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 3.91402)
 
-[node name="ShaderCache" parent="XRCamera3D/ShaderCacheContainer" instance=ExtResource("4_d5jj2")]
+[node name="ShaderCache" parent="ShaderCacheContainer" instance=ExtResource("4_d5jj2")]
 unique_name_in_owner = true
 transform = Transform3D(0.05, 0, 0, 0, 0.05, 0, 0, 0, 0.05, 0, 0, 0)
 
-[node name="ParticlesShaderCache" parent="XRCamera3D/ShaderCacheContainer" instance=ExtResource("6_u7mu1")]
+[node name="ParticlesShaderCache" parent="ShaderCacheContainer" instance=ExtResource("6_u7mu1")]
 unique_name_in_owner = true
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -10)
 
-[node name="Splashscreen" type="Node3D" parent="XRCamera3D"]
+[node name="Splashscreen" type="Node3D" parent="."]
 unique_name_in_owner = true
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.471853, -3)
+transform = Transform3D(1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 7.32815, -3)
 
-[node name="SplashScreenLogos" type="MeshInstance3D" parent="XRCamera3D/Splashscreen"]
+[node name="SplashScreenLogos" type="MeshInstance3D" parent="Splashscreen"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 3, 3)
 material_override = SubResource("ShaderMaterial_v6qvq")
 mesh = SubResource("QuadMesh_oyqt1")
 
-[node name="LogoAnimationPlayer" type="AnimationPlayer" parent="XRCamera3D/Splashscreen"]
+[node name="PointerRayCast" type="RayCast3D" parent="."]
 unique_name_in_owner = true
-libraries = {
-"": SubResource("AnimationLibrary_1h4pu")
-}
-
-[node name="PointerRayCast" type="RayCast3D" parent="XRCamera3D"]
-unique_name_in_owner = true
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.8, 0)
 enabled = false
 target_position = Vector3(0, 0, -15)
 collision_mask = 4
@@ -126,35 +84,29 @@ hit_back_faces = false
 collide_with_areas = true
 collide_with_bodies = false
 
-[node name="PointerMesh" type="MeshInstance3D" parent="XRCamera3D"]
+[node name="PointerMesh" type="MeshInstance3D" parent="."]
 unique_name_in_owner = true
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -2)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.8, -2)
 visible = false
 sorting_offset = 10.0
 material_override = ExtResource("2_bxq6t")
 mesh = SubResource("QuadMesh_anvmr")
+skeleton = NodePath("")
 
-[node name="RayPivot" type="Node3D" parent="XRCamera3D/PointerMesh"]
+[node name="RayPivot" type="Node3D" parent="PointerMesh"]
 unique_name_in_owner = true
 visible = false
 
-[node name="RayMesh" type="MeshInstance3D" parent="XRCamera3D/PointerMesh/RayPivot"]
+[node name="RayMesh" type="MeshInstance3D" parent="PointerMesh/RayPivot"]
 unique_name_in_owner = true
 transform = Transform3D(1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, 0, 0, 0.6)
 material_override = ExtResource("7_w3nnu")
 mesh = SubResource("CylinderMesh_nf3in")
-skeleton = NodePath("../../../../LeftController/ControllerRayCast")
+skeleton = NodePath("../../../LeftController/ControllerRayCast")
 
-[node name="VignetteMesh" type="MeshInstance3D" parent="XRCamera3D"]
+[node name="ReturnToMMBtnLbl" type="Label3D" parent="."]
 unique_name_in_owner = true
-visible = false
-sorting_offset = 3.0
-material_override = ExtResource("7_lhpba")
-mesh = SubResource("QuadMesh_6cwgg")
-
-[node name="ReturnToMMBtnLbl" type="Label3D" parent="XRCamera3D"]
-unique_name_in_owner = true
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.714, -2.75)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.086, -2.75)
 visible = false
 pixel_size = 0.001
 double_sided = false
@@ -166,24 +118,25 @@ text = "XR_PLAYER_MENU_BTN_PRESS"
 font_size = 87
 outline_size = 4
 
-[node name="SunRays" type="MeshInstance3D" parent="XRCamera3D"]
+[node name="SunRays" type="MeshInstance3D" parent="."]
 unique_name_in_owner = true
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.3, 0)
 top_level = true
 visible = false
 material_override = ExtResource("11_bfnmn")
 mesh = SubResource("CylinderMesh_3y5pf")
-skeleton = NodePath("../..")
 
-[node name="AmbientAudioPlayer" type="AudioStreamPlayer" parent="XRCamera3D"]
+[node name="AmbientAudioPlayer" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("10_fuxwj")
 volume_db = 1.5
 autoplay = true
+mix_target = 1
 bus = &"Background"
 
-[node name="SubmergeAudioPlayer" type="AudioStreamPlayer" parent="XRCamera3D"]
+[node name="SubmergeAudioPlayer" type="AudioStreamPlayer" parent="."]
 unique_name_in_owner = true
 stream = ExtResource("12_hucca")
+mix_target = 1
 bus = &"SFX"
 
 [node name="LeftController" type="XRController3D" parent="."]
@@ -216,3 +169,5 @@ show_when_tracked = true
 
 [node name="RGlove" parent="RightController" instance=ExtResource("8_h8gw4")]
 transform = Transform3D(1, 0, 1.50996e-07, 0, 1, 0, 1.50996e-07, 0, -1, 0.003, -0.029, 0.054)
+
+[node name="Fisheye" parent="." instance=ExtResource("14_gc58u")]

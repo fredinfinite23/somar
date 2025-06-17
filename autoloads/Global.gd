@@ -6,9 +6,9 @@ extends Node
 
 const EDITOR_PLUGIN_SAVE_DATA_PATH : String = "res://addons/export_plugin/scene_config_menu/scene_config_data.cfg"
 
-var xr_interface : XRInterface
+#var xr_interface : XRInterface
 
-var player : XROrigin3D
+var player : Node3D
 
 enum MaterialQuality {
 	LOW,
@@ -31,29 +31,31 @@ func _ready() -> void:
 		material_quality = MaterialQuality.HIGH
 		msaa_quality = Viewport.MSAA.MSAA_4X
 	
-	xr_interface = XRServer.find_interface("OpenXR")
-	if xr_interface and xr_interface.is_initialized():
-		xr_interface.session_begun.connect(_on_openxr_session_begun)
-		xr_interface.pose_recentered.connect(_recenter)
+	#xr_interface = XRServer.find_interface("OpenXR")
+	#if xr_interface and xr_interface.is_initialized():
+		#xr_interface.session_begun.connect(_on_openxr_session_begun)
+		#xr_interface.pose_recentered.connect(_recenter)
 
-		get_viewport().use_xr = true
-		DisplayServer.window_set_vsync_mode(DisplayServer.VSYNC_DISABLED)
+		#get_viewport().use_xr = true
+		#DisplayServer.window_set_vsync_mode(DisplayServer.VSYNC_DISABLED)
 
-		_load_editor_plugin_data()
 	else:
 		print("OpenXR not initialized, please check if your headset is connected")
+		
+	# We maybe are driving in CubeMap mode so load the plugin data regardless
+	_load_editor_plugin_data()
 
-func _on_openxr_session_begun() -> void:
-	var available_refresh_rates : Array = xr_interface.get_available_display_refresh_rates()
-	var selected_refresh_rate : int = 72
-	if available_refresh_rates.has(90.0) and _is_quest():
-		selected_refresh_rate = 90
-	
-	xr_interface.display_refresh_rate = float(selected_refresh_rate)
-	Engine.max_fps = selected_refresh_rate
-	Engine.physics_ticks_per_second = selected_refresh_rate
-
-	get_viewport().msaa_3d = msaa_quality
+#func _on_openxr_session_begun() -> void:
+	#var available_refresh_rates : Array = xr_interface.get_available_display_refresh_rates()
+	#var selected_refresh_rate : int = 72
+	#if available_refresh_rates.has(90.0) and _is_quest():
+		#selected_refresh_rate = 90
+	#
+	#xr_interface.display_refresh_rate = float(selected_refresh_rate)
+	#Engine.max_fps = selected_refresh_rate
+	#Engine.physics_ticks_per_second = selected_refresh_rate
+#
+	#get_viewport().msaa_3d = msaa_quality
 
 
 func _load_editor_plugin_data() -> void:
@@ -91,8 +93,8 @@ func _is_quest() -> bool:
 	return false
 
 
-func _recenter() -> void:
-	XRServer.center_on_hmd(XRServer.RESET_BUT_KEEP_TILT, true)
+#func _recenter() -> void:
+	#XRServer.center_on_hmd(XRServer.RESET_BUT_KEEP_TILT, true)
 
 
 func quadratic_bezier(p0 : Vector3, p1 : Vector3, p2 : Vector3, t : float) -> Vector3:

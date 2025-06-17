@@ -2,16 +2,21 @@
 #
 # SPDX-License-Identifier: BSL-1.0
 
-extends XROrigin3D
+extends Node3D
 
-signal fade_finished
 signal shader_cache_finished
 
 const HQ_SHADER_CACHE_PATH : String = "res://utilities/shader_cache/hq_shader_cache.tscn"
 const MENU_DOUBLE_PRESS_TIME_MS : int = 4000
 
+# This mode activates cubemap/panorama rendering and assumes "Automatic Menu"
+# export (UI) menu_options since in that mode, there's no pose nor controller.
+# so menus have to set default timed-out automatic values.
+@export_category("Panorama")
+@export var panorama_mode : bool = false
+
 @onready var tree : SceneTree = get_tree()
-@onready var camera : XRCamera3D = %XRCamera3D
+@onready var camera : Node3D = %CubeCam
 @onready var pointer_raycast : RayCast3D = %PointerRayCast
 @onready var controller_raycast : RayCast3D = %ControllerRayCast
 @onready var pointer_mesh : MeshInstance3D = %PointerMesh
@@ -23,7 +28,6 @@ const MENU_DOUBLE_PRESS_TIME_MS : int = 4000
 @onready var shader_cache_container : Node3D = %ShaderCacheContainer
 @onready var shader_cache : Node3D = %ShaderCache
 @onready var particles_shader_cache : Node3D = %ParticlesShaderCache
-@onready var vignette_mesh : MeshInstance3D = %VignetteMesh
 @onready var logo_animation_player : AnimationPlayer = %LogoAnimationPlayer
 @onready var return_to_mm_btn_lbl : Label3D = %ReturnToMMBtnLbl
 @onready var submerge_audio_player : AudioStreamPlayer = %SubmergeAudioPlayer
@@ -61,8 +65,25 @@ var return_to_mm_lbl_timer : Timer
 var first_cache_run : bool = true
 
 
+func on_resize():
+	$Fisheye.size = get_viewport().size;
+
 func _ready() -> void:
-	vignette_material = vignette_mesh.material_override
+	
+	# disable 3d output on our main viewport
+	var vp = get_viewport()
+	vp.disable_3d = true
+	#vp.usage = SubViewport.USAGE_2D
+	#vp.hdr = false
+	
+	# bind our camera images to our Fisheye render
+	$Fisheye.set_from_cubemap($CubeCam)
+	
+	# connect to our window resize signal
+	get_tree().get_root().connect("size_changed", Callable(self, "on_resize"))
+	
+	# init our size
+	on_resize();
 
 	if left_controller.get_is_active():
 		active_controllers_count += 1
@@ -94,8 +115,7 @@ func _ready() -> void:
 	
 	run_shader_cache()
 
-	logo_animation_player.play("logo_animation")
-
+#	logo_animation_player.play("logo_animation")
 
 func run_shader_cache() -> void:
 	shader_cache_finished_count = 0
@@ -117,13 +137,13 @@ func _shader_cache_finished() -> void:
 			shader_cache_container.visible = false
 			shader_cache_finished.emit()
 			
-			if logo_animation_player.is_playing():
-				await logo_animation_player.animation_finished
+			#if logo_animation_player.is_playing():
+				#await logo_animation_player.animation_finished
 			
 			XRServer.center_on_hmd(XRServer.RESET_BUT_KEEP_TILT, true)
 
-			fade(false)
-			await fade_finished
+			#fade(false)
+			#await fade_finished
 
 			splashscreen_container.queue_free()
 
@@ -178,50 +198,54 @@ func _process(_delta : float) -> void:
 			current_raycast_collider = null
 
 
-func fade(fade_in : bool, fade_time : float = 1.0) -> void:
-	if fade_tween:
-		fade_tween.kill()
-	
-	var outer_r_target : float = 0.0
-	var main_a_target : float = 1.0
-	var fade_ease : Tween.EaseType = Tween.EASE_OUT
-
-	if fade_in:
-		vignette_material.set_shader_parameter("outer_radius", 0.0)
-		vignette_material.set_shader_parameter("main_alpha", 1.0)
-
-		outer_r_target = 5.0
-		main_a_target = 0.0
-
-		fade_ease = Tween.EASE_IN
-	else:
-		vignette_material.set_shader_parameter("outer_radius", 5.0)
-		vignette_material.set_shader_parameter("main_alpha", 0.0)
-	
-	vignette_mesh.visible = true
-	
-	fade_tween = create_tween()
-	fade_tween.set_trans(Tween.TRANS_CUBIC)
-	fade_tween.set_ease(fade_ease)
-	fade_tween.set_parallel(true)
-	fade_tween.tween_property(
-		vignette_material,
-		"shader_parameter/outer_radius",
-		outer_r_target,
-		fade_time
-	)
-	fade_tween.tween_property(
-		vignette_material,
-		"shader_parameter/main_alpha",
-		main_a_target,
-		fade_time
-	)
-
-	await fade_tween.finished
-
-	vignette_mesh.visible = !fade_in
-
-	fade_finished.emit()
+#func fade(fade_in : bool, fade_time : float = 1.0) -> void:
+	#if fade_tween:
+		#fade_tween.kill()
+	#
+	#var outer_r_target : float = 0.0
+	#var main_a_target : float = 1.0
+	#var fade_ease : Tween.EaseType = Tween.EASE_OUT
+#
+	#if fade_in:
+		#if not Global.player.Fisheye_mode:
+			#vignette_material.set_shader_parameter("outer_radius", 0.0)
+		#vignette_material.set_shader_parameter("main_alpha", 1.0)
+#
+		#outer_r_target = 5.0
+		#main_a_target = 0.0
+#
+		#fade_ease = Tween.EASE_IN
+	#else:
+		#if not Global.player.Fisheye_mode:
+			#vignette_material.set_shader_parameter("outer_radius", 5.0)
+		#vignette_material.set_shader_parameter("main_alpha", 0.0)
+	#
+	#vignette_mesh.visible = true
+	#
+	#fade_tween = create_tween()
+	#fade_tween.set_trans(Tween.TRANS_CUBIC)
+	#fade_tween.set_ease(fade_ease)
+	#fade_tween.set_parallel(true)
+	#
+	#if not Global.player.Fisheye_mode:
+		#fade_tween.tween_property(
+			#vignette_material,
+			#"shader_parameter/outer_radius",
+			#outer_r_target,
+			#fade_time
+		#)
+	#fade_tween.tween_property(
+		#vignette_material,
+		#"shader_parameter/main_alpha",
+		#main_a_target,
+		#fade_time
+	#)
+#
+	#await fade_tween.finished
+#
+	#vignette_mesh.visible = !fade_in
+#
+	#fade_finished.emit()
 
 
 func _handle_input_enabled(value : bool) -> void:

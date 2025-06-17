@@ -1,13 +1,13 @@
 [gd_scene load_steps=24 format=3 uid="uid://kp675oye12no"]
 
-[ext_resource type="Script" path="res://scenes/3d/main_menu/map/map_scene.gd" id="1_gmoac"]
+[ext_resource type="Script" uid="uid://brykm5wvvfj7u" path="res://scenes/3d/main_menu/map/map_scene.gd" id="1_gmoac"]
 [ext_resource type="Texture2D" uid="uid://bctpc6245g6r5" path="res://scenes/3d/main_menu/map/textures/map_scene_skybox_1k.png" id="2_smvuo"]
 [ext_resource type="Material" uid="uid://ft218cpips15" path="res://scenes/3d/main_menu/map/materials/main_menu_map_hq_material.tres" id="3_8ytoh"]
 [ext_resource type="ArrayMesh" uid="uid://pmnwr0e2vnc6" path="res://scenes/3d/main_menu/map/mesh/map_subdiv_v2_MapMesh_subdiv_v2.res" id="3_72qg8"]
 [ext_resource type="Material" uid="uid://da4c7rkave6nk" path="res://scenes/3d/main_menu/map/materials/main_menu_map_low_material.tres" id="3_sv1kv"]
-[ext_resource type="Script" path="res://utilities/CustomBtn.gd" id="5_mr1yy"]
-[ext_resource type="Script" path="res://utilities/CustomMeshInstance3D.gd" id="5_tjyeu"]
-[ext_resource type="Shader" path="res://scenes/3d/main_menu/materials/main_menu_long_press_btn_shader.gdshader" id="6_sbrvh"]
+[ext_resource type="Script" uid="uid://d0mh6raybhr71" path="res://utilities/CustomBtn.gd" id="5_mr1yy"]
+[ext_resource type="Script" uid="uid://bqwm7ba7t8t1v" path="res://utilities/CustomMeshInstance3D.gd" id="5_tjyeu"]
+[ext_resource type="Shader" uid="uid://csdjghf8hq8yh" path="res://scenes/3d/main_menu/materials/main_menu_long_press_btn_shader.gdshader" id="6_sbrvh"]
 
 [sub_resource type="PanoramaSkyMaterial" id="PanoramaSkyMaterial_53ny0"]
 panorama = ExtResource("2_smvuo")
@@ -171,12 +171,13 @@ tracks/3/keys = {
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_rrcqf"]
 _data = {
-"RESET": SubResource("Animation_bmjx5"),
-"show_markers": SubResource("Animation_0ihxd")
+&"RESET": SubResource("Animation_bmjx5"),
+&"show_markers": SubResource("Animation_0ihxd")
 }
 
 [node name="MapScene" type="Node3D" node_paths=PackedStringArray("player_position") groups=["change_with_input", "menu_btn_listeners"]]
 script = ExtResource("1_gmoac")
+menu_option = 1
 player_position = NodePath("PlayerPosition")
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
@@ -304,6 +305,7 @@ outline_size = 40
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 5.605, 0)
 
 [node name="LicenseLbl" type="Label3D" parent="."]
+unique_name_in_owner = true
 transform = Transform3D(1, 0, 0, 0, 0.258819, 0.965926, 0, -0.965926, 0.258819, 0, 5.52334, -0.702152)
 pixel_size = 0.001
 double_sided = false

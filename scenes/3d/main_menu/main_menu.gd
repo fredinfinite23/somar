@@ -9,8 +9,18 @@ extends BaseScene
 @onready var press_instructions_lbl : Label3D = %PressInstructionsLbl
 @onready var language_buttons : Node3D = %LanguageButtons
 
-var listening_to_menu_btn : bool = true
+enum AutoMenuStrings {
+	OFF = 0,
+	English = 1,
+	Portuguese = 2
+}
 
+# Editor option to select which menu is chosen automatically
+# Very handy when in CubeMap mode (no pose, no contoller)
+@export_category("Automatic Menu")
+@export var menu_option : AutoMenuStrings = AutoMenuStrings.OFF
+
+var listening_to_menu_btn : bool = true
 
 func _ready() -> void:
 	await tree.process_frame
@@ -26,11 +36,20 @@ func _ready() -> void:
 	language_buttons.visible = true
 	language_buttons.global_position.y = Global.player.camera.global_position.y
 
-	Global.player.fade(true)
+	# Global.player.fade(true)
 
-	await Global.player.fade_finished
+	#await Global.player.fade_finished
 	Global.player.input_enabled = true
-
+	
+	# Add default timout behavior/action
+	assert(not Global.player.panorama_mode || (Global.player.panorama_mode && menu_option),\
+	"You MUST select a default Automatic menu behavior here in panorama_mode")
+	if menu_option != AutoMenuStrings.OFF :
+		await tree.create_timer(1.0).timeout
+		if menu_option == AutoMenuStrings.English :
+			_set_language("en")
+		elif menu_option == AutoMenuStrings.Portuguese :
+			_set_language("pt")
 
 func _set_language(lang_code : String) -> void:
 	Global.player.input_enabled = false
@@ -51,8 +70,8 @@ func _set_language(lang_code : String) -> void:
 	language_buttons.visible = false
 	language_buttons.process_mode = Node.PROCESS_MODE_DISABLED
 
-	Global.player.fade(false)
-	await Global.player.fade_finished
+	#Global.player.fade(false)
+	#await Global.player.fade_finished
 	SceneManager.switch_to_scene("map_menu")
 
 

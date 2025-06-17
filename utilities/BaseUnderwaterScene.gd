@@ -93,9 +93,9 @@ func _ready() -> void:
 
 	await tree.process_frame
 
-	Global.player.fade(true)
+	#Global.player.fade(true)
 	AudioManager.fade(true, AudioManager.AudioBus.UNDERWATER)
-	await Global.player.fade_finished
+	#await Global.player.fade_finished
 
 	_play_whale()
 

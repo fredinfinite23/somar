@@ -4,7 +4,7 @@
 
 extends Node3D
 
-@onready var player : XROrigin3D = %XrPlayer
+@onready var player : Node3D = %XrPlayer
 @onready var player_transition_container : Node3D = %PlayerTransitionContainer
 @onready var scene_container : Node3D = %SceneContainer
 

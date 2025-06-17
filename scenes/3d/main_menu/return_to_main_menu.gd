@@ -21,11 +21,14 @@ func _handle_btn_pressed() -> void:
 
 
 func change_with_input(controller_input : bool) -> void:
-	if controller_input:
-		return_to_main_menu_btn.visible = false
-		return_to_main_menu_btn.process_mode = Node.PROCESS_MODE_DISABLED
-		bg_area.process_mode = Node.PROCESS_MODE_DISABLED
-	else:
-		bg_area.process_mode = Node.PROCESS_MODE_INHERIT
-		return_to_main_menu_btn.process_mode = Node.PROCESS_MODE_INHERIT
+	if Global.player.panorama_mode:
 		return_to_main_menu_btn.visible = true
+	else: 
+		if controller_input:
+			return_to_main_menu_btn.visible = false
+			return_to_main_menu_btn.process_mode = Node.PROCESS_MODE_DISABLED
+			bg_area.process_mode = Node.PROCESS_MODE_DISABLED
+		else:
+			bg_area.process_mode = Node.PROCESS_MODE_INHERIT
+			return_to_main_menu_btn.process_mode = Node.PROCESS_MODE_INHERIT
+			return_to_main_menu_btn.visible = true

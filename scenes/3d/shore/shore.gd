@@ -4,6 +4,16 @@
 
 extends BaseUnderwaterScene
 
+enum AutoMenuStrings {
+	OFF = 0,
+	Initial_ui = 1,
+}
+
+# Editor option to select which menu is chosen automatically
+# Very handy when in CubeMap mode (no pose, no contoller)
+@export_category("Automatic Menu")
+@export var menu_option : AutoMenuStrings = AutoMenuStrings.OFF
+
 @export var shadows_sub_viewport : SubViewport
 @export_range(0.0, 1.0) var dolphins_curious_amount_rate : float = 0.5
 
@@ -26,10 +36,21 @@ func _ready() -> void:
 	if Global.material_quality == Global.MaterialQuality.HIGH:
 		shadows_sub_viewport.render_target_update_mode = SubViewport.UPDATE_ALWAYS
 
-	await initial_ui.ui_closed
+	# We don't want to see the initial_ui in Cubemap mode.
+	if Global.player.panorama_mode:
+		initial_ui.visible = false
+		initial_ui.close_ui();
+	else:
+		if menu_option != AutoMenuStrings.OFF :
+			initial_ui.visible = true
+			await tree.create_timer(1.0).timeout
+			initial_ui.close_ui();
+		else:
+			initial_ui.visible = true
+			await initial_ui.ui_closed
 
 	dolphin_audio_manager.start()
-
+	
 	var shrimp_fade_in : Tween = create_tween()
 	shrimp_fade_in.set_ease(Tween.EASE_IN)
 	shrimp_fade_in.tween_property(
