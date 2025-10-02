@@ -43,7 +43,11 @@ func _ready() -> void:
 
 	dolphin_audio_manager.start()
 
-	hunting_update_rate = int(Engine.max_fps / 6.0)
+	if (Engine.max_fps == 0.0) :
+		hunting_update_rate = 45
+	else :
+		hunting_update_rate = int(Engine.max_fps / 6.0)
+	
 	school_fish.detecting_dolphins = true
 
 	for dolphin : DolphinBase in dolphins_parent.get_children():

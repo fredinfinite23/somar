@@ -119,13 +119,14 @@ mesh = SubResource("QuadMesh_ftmyj")
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.05, 0)
 
 [node name="UI" type="Node3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 0.996639, -0.0819211, 0, 0.0819211, 0.996639, 0, -0.117151, 0)
 
 [node name="ShoreInitialUI" parent="UI" instance=ExtResource("7_qdum6")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -1.8)
 visible = false
 
 [node name="ShoreFinalUi" parent="UI" instance=ExtResource("8_3ol5e")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -1.8)
+transform = Transform3D(1, 0, 0, 0, 0.996529, 0.0832427, 0, -0.0832427, 0.996529, 0.247149, 1.93532, -1.68105)
 
 [node name="ReturnToMainMenu" parent="." instance=ExtResource("7_iabag")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.05, 0)

@@ -177,7 +177,7 @@ _data = {
 
 [node name="MapScene" type="Node3D" node_paths=PackedStringArray("player_position") groups=["change_with_input", "menu_btn_listeners"]]
 script = ExtResource("1_gmoac")
-menu_option = 1
+menu_option = 2
 player_position = NodePath("PlayerPosition")
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
@@ -370,5 +370,5 @@ shape = SubResource("BoxShape3D_tj5yq")
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 unique_name_in_owner = true
 libraries = {
-"": SubResource("AnimationLibrary_rrcqf")
+&"": SubResource("AnimationLibrary_rrcqf")
 }

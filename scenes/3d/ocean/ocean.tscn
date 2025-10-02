@@ -115,6 +115,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -9.5)
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -35)
 
 [node name="UI" type="Node3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.93, 0)
 
 [node name="OceanInitialUI" parent="UI" instance=ExtResource("8_b50c8")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -1.8)
@@ -123,6 +124,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -1.8)
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -1.8)
 
 [node name="ReturnToMainMenu" parent="." instance=ExtResource("7_jnhsx")]
+visible = false
 
 [node name="Dolphins" type="Node3D" parent="."]
 unique_name_in_owner = true

@@ -48,6 +48,7 @@ scene = ExtResource("5_t778e")
 
 [node name="ReturnBtn" type="Area3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.806571, 0)
+visible = false
 collision_layer = 4
 collision_mask = 0
 monitoring = false
