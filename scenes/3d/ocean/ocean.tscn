@@ -43,7 +43,7 @@ size = Vector2(8, 8)
 
 [sub_resource type="Curve3D" id="Curve3D_lv1u2"]
 _data = {
-"points": PackedVector3Array(1.41192, -0.696103, 2.38809, -1.41192, 0.696103, -2.38809, -7.23551, -2.95639e-05, -2.66072, -2.69581, -0.438599, 2.6372, 2.69581, 0.438599, -2.6372, -5.564, -7.31945e-05, -6.33097, -1.24725, 0.123572, -1.32486, 1.24725, -0.123572, 1.32486, 3.23194, 0.0985596, -7.02485, -3.17962, 0.205415, -0.313628, 3.17962, -0.205415, 0.313628, 7.38161, -0.43413, -5.57089, 2.94085, 0, 0.409162, -2.94085, 0, -0.409162, 5.69575, -0.434155, -10.0759, 3.2733, 0, -1.53436, -3.2733, 0, 1.53436, -3.00584, -0.434155, -7.48541, 0.613743, 0, 0.690462, -0.613743, 0, -0.690462, -6.37513, -0.434155, -9.08881, -3.01757, 0, 0.920614, 3.01757, 0, -0.920614, -0.640336, -0.434155, -11.137, -2.58087, 0, 0.157937, 2.58087, 0, -0.157937, 5.3641, -0.434155, -6.01156, 14.735, 0, -1.90899, -14.735, 0, 1.90899, -0.773459, -0.434155, -8.95295, -1.57691, -0.696045, -0.186516, 1.57691, 0.696045, 0.186516, -9.10596, 4.88758e-05, -0.595111, 1.412, -0.696, 2.388, 0, 0, 0, -7.22389, 0, -2.66845),
+"points": PackedVector3Array(1.41192, -0.696103, 2.38809, -1.41192, 0.696103, -2.38809, -4.05553, -2.95639e-05, -3.39936, -2.69581, -0.438599, 2.6372, 2.69581, 0.438599, -2.6372, -5.564, -7.31945e-05, -6.33097, -1.24725, 0.123572, -1.32486, 1.24725, -0.123572, 1.32486, 0.922432, 0.0985587, -5.02605, -3.17962, 0.205415, -0.313628, 3.17962, -0.205415, 0.313628, 0.631458, -0.434129, -1.33233, 2.94085, 0, 0.409162, -2.94085, 0, -0.409162, 3.44363, -0.434154, -8.39953, 3.2733, 0, -1.53436, -3.2733, 0, 1.53436, -2.92809, -0.434155, -6.97815, 0.613743, 0, 0.690462, -0.613743, 0, -0.690462, -6.37513, -0.434155, -9.08881, -3.01757, 0, 0.920614, 3.01757, 0, -0.920614, -0.640336, -0.434155, -11.137, -2.58087, 0, 0.157937, 2.58087, 0, -0.157937, 3.03289, -0.434155, -3.57395, 14.735, 0, -1.90899, -14.735, 0, 1.90899, -0.773459, -0.434155, -8.95295, -1.57691, -0.696045, -0.186516, 1.57691, 0.696045, 0.186516, -5.05031, 4.88758e-05, -0.185442, 1.412, -0.696, 2.388, 0, 0, 0, -4.06708, 0, -3.40543),
 "tilts": PackedFloat32Array(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0)
 }
 point_count = 12
@@ -107,12 +107,13 @@ material_override = SubResource("ShaderMaterial_a531b")
 mesh = SubResource("QuadMesh_mmgpg")
 
 [node name="PlayerPosition" type="Marker3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -2, 0)
 
 [node name="InitialDolphinsPos" type="Marker3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -9.5)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -2.90125)
 
 [node name="BoatInterceptPos" type="Marker3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -35)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -3.76105)
 
 [node name="UI" type="Node3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.93, 0)
@@ -121,7 +122,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.93, 0)
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -1.8)
 
 [node name="OceanFinalUi" parent="UI" instance=ExtResource("9_q1pty")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -1.8)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1.61168, -0.00519872)
 
 [node name="ReturnToMainMenu" parent="." instance=ExtResource("7_jnhsx")]
 visible = false
@@ -161,21 +162,21 @@ visible = false
 [node name="HumpbackWhalePath" parent="." instance=ExtResource("12_xgx7v")]
 unique_name_in_owner = true
 process_mode = 4
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.75, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.75, 40.4423)
 move_time = 180.0
 
 [node name="BlueWhalePath" parent="." instance=ExtResource("13_fim7d")]
 unique_name_in_owner = true
 process_mode = 4
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 4.71307, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 4.71307, 40.4423)
 blue = true
 
 [node name="FishSchoolPath3D" type="Path3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.8, -6.0758)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3.12902, 1.8, 5.58783)
 curve = SubResource("Curve3D_lv1u2")
 
 [node name="SchoolFishPathFollow3D" type="PathFollow3D" parent="FishSchoolPath3D"]
-transform = Transform3D(0.860676, 0, 0.508861, 0, 0.999993, 0, -0.508861, 0, 0.860676, -7.23551, -1.50003, -2.66072)
+transform = Transform3D(0.860676, 0, 0.508861, 0, 0.999993, 0, -0.508861, 0, 0.860676, -4.05553, -1.50003, -3.39936)
 v_offset = -1.5
 rotation_mode = 1
 script = ExtResource("13_n4p2q")
@@ -198,6 +199,7 @@ whistling_rate = 0.3
 whistling_cooldown = 0.8
 
 [node name="BoatIdlePath" type="Path3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -9.5945, 0, -0.146111)
 curve = SubResource("Curve3D_yolo5")
 
 [node name="PathFollow3D" type="PathFollow3D" parent="BoatIdlePath"]
@@ -207,4 +209,4 @@ rotation_mode = 4
 update_scale = false
 
 [node name="OrcaPodPath" parent="." instance=ExtResource("25_v3vew")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.916304, -10.403)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.916304, 13.629)

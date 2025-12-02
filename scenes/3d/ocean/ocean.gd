@@ -61,10 +61,10 @@ func _start_boat_event() -> void:
 	initial_boat = INFLATABLE_PATROL_BOAT_SCENE.instantiate()
 	boats_parent.add_child(initial_boat)
 	initial_boat.global_position = Vector3(1000.0, 1000.0, 1000.0)
-	initial_boat.stop_at_ratio = 0.53
+	initial_boat.stop_at_ratio = 0.50
 
 	initial_boat.signal_at_ratios.push_back(0.35) # TODO, make configurable
-	initial_boat.signal_at_ratios.push_back(0.53) # TODO, make configurable
+	initial_boat.signal_at_ratios.push_back(0.45) # TODO, make configurable
 	initial_boat.reached_ratio.connect(_handle_boat_ratio_reached)
 
 	initial_boat.initial_no_stop = true
@@ -86,7 +86,7 @@ func _handle_boat_ratio_reached(ratio : float) -> void:
 		hunting = false
 		school_fish.detecting_dolphins = false
 
-	elif is_equal_approx(ratio, 0.53):
+	elif is_equal_approx(ratio, 0.45):
 		_move_boat_to_whale_path()
 
 
@@ -138,7 +138,7 @@ func _move_boat_to_whale_path() -> void:
 	engine_tween.tween_property(
 		initial_boat.engine_idle_loop_audio_player,
 		"volume_db",
-		0.0,
+		-10.0,
 		1.0
 	)
 	initial_boat.engine_idle_loop_audio_player.play()
@@ -146,12 +146,12 @@ func _move_boat_to_whale_path() -> void:
 	var engine_tween2 : Tween = create_tween()
 	engine_tween2.tween_callback(func() -> void :
 		initial_boat.engine_loop_audio_player.stop()
-	).set_delay(1.75)
+	).set_delay(1.0)
 	engine_tween2.tween_property(
 		initial_boat.engine_loop_audio_player,
 		"volume_db",
 		-30.0,
-		1.75
+		1.0
 	)
 
 	var time_to_stop : float = (boat_dist * 1.5) / initial_boat.boat_speed_in_m_per_s

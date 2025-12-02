@@ -28,7 +28,6 @@ const MENU_DOUBLE_PRESS_TIME_MS : int = 4000
 @onready var shader_cache_container : Node3D = %ShaderCacheContainer
 @onready var shader_cache : Node3D = %ShaderCache
 @onready var particles_shader_cache : Node3D = %ParticlesShaderCache
-@onready var logo_animation_player : AnimationPlayer = %LogoAnimationPlayer
 @onready var return_to_mm_btn_lbl : Label3D = %ReturnToMMBtnLbl
 @onready var submerge_audio_player : AudioStreamPlayer = %SubmergeAudioPlayer
 @onready var sun_rays : MeshInstance3D = %SunRays
@@ -115,8 +114,6 @@ func _ready() -> void:
 	
 	run_shader_cache()
 
-#	logo_animation_player.play("logo_animation")
-
 func run_shader_cache() -> void:
 	shader_cache_finished_count = 0
 	shader_cache_container.visible = true
@@ -136,9 +133,6 @@ func _shader_cache_finished() -> void:
 			# shader_cache_container.queue_free()
 			shader_cache_container.visible = false
 			shader_cache_finished.emit()
-			
-			#if logo_animation_player.is_playing():
-				#await logo_animation_player.animation_finished
 			
 			XRServer.center_on_hmd(XRServer.RESET_BUT_KEEP_TILT, true)
 
@@ -387,7 +381,7 @@ func _handle_menu_btn_pressed() -> void:
 	else:
 		last_menu_btn_press_time = time_now
 		return_to_mm_btn_lbl.visible = true
-		return_to_mm_lbl_timer.start(MENU_DOUBLE_PRESS_TIME_MS / 1000)
+		return_to_mm_lbl_timer.start(MENU_DOUBLE_PRESS_TIME_MS / 1000.0)
 
 func _hide_return_to_mm_lbl() -> void:
 	return_to_mm_btn_lbl.visible = false

@@ -111,11 +111,11 @@ func initialize(boat_spawn_distance : float, surface_position : Marker3D, path_q
 	final_boat_position_point = final_boat_position_point if not mode_1 else ((curve_points.size() - 1) - final_boat_position_point)
 
 	initial_boat_position = quadrant.to_global(curve_points[initial_boat_position_point])
-	final_boat_position = opposite_quadrant.to_global(curve_points[final_boat_position_point])
+	final_boat_position = (opposite_quadrant.to_global(curve_points[final_boat_position_point])) / 2.0 #bring twice as near the center (where player is)
 
 	boat_direction = initial_boat_position.direction_to(final_boat_position)
 	initial_boat_position += (boat_spawn_distance - CURVE_RADIUS) * -boat_direction
-	final_boat_position += (boat_spawn_distance - CURVE_RADIUS) * boat_direction
+	final_boat_position += ((boat_spawn_distance - CURVE_RADIUS) * boat_direction)
 
 	# Correct height
 	initial_boat_position.y = surface_position.global_position.y + surface_offset
