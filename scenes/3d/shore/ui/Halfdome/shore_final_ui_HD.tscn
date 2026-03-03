@@ -1,0 +1,159 @@
+[gd_scene load_steps=13 format=3 uid="uid://blwtwcbwq54nk"]
+
+[ext_resource type="Script" uid="uid://cpo5587lnso6b" path="res://scenes/3d/shore/ui/Shared/shore_final_ui.gd" id="1_o6vlp"]
+[ext_resource type="PackedScene" uid="uid://gs4ji44u7lso" path="res://scenes/3d/info_plane/info_panel.tscn" id="2_ejet8"]
+[ext_resource type="PackedScene" uid="uid://brxtu5csx87u" path="res://scenes/2d/shore/Halfdome/shore_final_ui_left_layout_hd.tscn" id="3_3y381"]
+[ext_resource type="PackedScene" uid="uid://cq7rnpgbjg1xl" path="res://scenes/2d/shore/Halfdome/shore_final_ui_center_layout_hd.tscn" id="4_3y381"]
+[ext_resource type="PackedScene" uid="uid://2g37cn07g22d" path="res://scenes/2d/shore/Halfdome/shore_final_ui_soundscape_layout_hd.tscn" id="5_3y381"]
+[ext_resource type="PackedScene" uid="uid://flemfqiyo1uh" path="res://scenes/2d/shore/Halfdome/shore_final_ui_right_layout_hd.tscn" id="6_3y381"]
+[ext_resource type="Script" uid="uid://d0mh6raybhr71" path="res://utilities/CustomBtn.gd" id="7_up1ff"]
+[ext_resource type="Shader" uid="uid://csdjghf8hq8yh" path="res://scenes/3d/main_menu/materials/main_menu_long_press_btn_shader.gdshader" id="8_1x1ca"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_lj6uw"]
+render_priority = 0
+shader = ExtResource("8_1x1ca")
+shader_parameter/size = Vector2(1, 0.5)
+shader_parameter/border_size = 0.02
+shader_parameter/border_fade_in = 0.0
+shader_parameter/border_fade_out = 0.0
+shader_parameter/corner_radius = 0.3
+
+[sub_resource type="QuadMesh" id="QuadMesh_jnspi"]
+size = Vector2(0.8, 0.4)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_834s8"]
+size = Vector3(0.8, 0.4, 0.015)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_soyso"]
+size = Vector3(1, 2.49634, 0.0146484)
+
+[node name="ShoreFinalUi" type="Node3D"]
+script = ExtResource("1_o6vlp")
+
+[node name="Node3D" type="Node3D" parent="."]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 0, 0, 0)
+
+[node name="LeftInfoPanel" parent="Node3D" instance=ExtResource("2_ejet8")]
+transform = Transform3D(-6.55671e-08, 0, 1.5, 0, 1.5, 0, -1.5, 0, -6.55671e-08, -2.60327, 0, -0.00938332)
+scene = ExtResource("3_3y381")
+
+[node name="Node3D3" type="Node3D" parent="."]
+transform = Transform3D(0.708081, 0, 0.706131, 0, 1, 0, -0.706131, 0, 0.708081, 0, 0, 0)
+
+[node name="CenterInfoPanel" parent="Node3D3" instance=ExtResource("2_ejet8")]
+transform = Transform3D(1.06066, 0, 1.06066, 0, 1.5, 0, -1.06066, 0, 1.06066, -1.81136, 0, -1.8078)
+scene = ExtResource("4_3y381")
+
+[node name="Node3D2" type="Node3D" parent="."]
+
+[node name="SoundscapePanel" parent="Node3D2" instance=ExtResource("2_ejet8")]
+transform = Transform3D(1.5, 0, 0, 0, 1.5, 0, 0, 0, 1.5, 0.0120125, 0, -2.57164)
+scene = ExtResource("5_3y381")
+
+[node name="Node3D4" type="Node3D" parent="."]
+transform = Transform3D(0.707107, 0, -0.707107, 0, 1, 0, 0.707107, 0, 0.707107, 0, 0, 0)
+
+[node name="RightInfoPanel" parent="Node3D4" instance=ExtResource("2_ejet8")]
+transform = Transform3D(1.06066, 0, -1.06066, 0, 1.5, 0, 1.06066, 0, 1.06066, 1.80501, 0, -1.82764)
+scene = ExtResource("6_3y381")
+
+[node name="ReturnBtn" type="Area3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.806571, 0)
+visible = false
+collision_layer = 4
+collision_mask = 0
+monitoring = false
+script = ExtResource("7_up1ff")
+
+[node name="BtnBackground" type="MeshInstance3D" parent="ReturnBtn"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -0.505427)
+sorting_offset = 1.0
+material_override = SubResource("ShaderMaterial_lj6uw")
+mesh = SubResource("QuadMesh_jnspi")
+skeleton = NodePath("../../..")
+
+[node name="BtnLabel" type="Label3D" parent="ReturnBtn"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -0.503227)
+pixel_size = 0.001
+double_sided = false
+render_priority = 2
+outline_render_priority = 1
+modulate = Color(0.160784, 0.207843, 0.537255, 1)
+outline_modulate = Color(0.160784, 0.207843, 0.537255, 1)
+text = "RETURN_TO_MM_LBL"
+font_size = 128
+outline_size = 8
+
+[node name="BtnCollisionShape" type="CollisionShape3D" parent="ReturnBtn"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -0.505427)
+shape = SubResource("BoxShape3D_834s8")
+
+[node name="BGArea" type="Area3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.0404669, 0)
+collision_layer = 4
+collision_mask = 0
+monitoring = false
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="BGArea"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0164375, 0, -2.41064)
+shape = SubResource("BoxShape3D_soyso")
+
+[node name="CollisionShape3D2" type="CollisionShape3D" parent="BGArea"]
+transform = Transform3D(0.965926, 0, -0.258819, 0, 1, 0, 0.258819, 0, 0.965926, 0.989899, 0, -2.28192)
+shape = SubResource("BoxShape3D_soyso")
+
+[node name="CollisionShape3D3" type="CollisionShape3D" parent="BGArea"]
+transform = Transform3D(0.965926, 0, 0.258819, 0, 1, 0, -0.258819, 0, 0.965926, -0.995438, 0, -2.28203)
+shape = SubResource("BoxShape3D_soyso")
+
+[node name="CollisionShape3D4" type="CollisionShape3D" parent="BGArea"]
+transform = Transform3D(0.707107, 0, 0.707107, 0, 1, 0, -0.707107, 0, 0.707107, -1.82843, 0, -1.80165)
+shape = SubResource("BoxShape3D_soyso")
+
+[node name="CollisionShape3D6" type="CollisionShape3D" parent="BGArea"]
+transform = Transform3D(0.258819, 0, 0.965926, 0, 1, 0, -0.965926, 0, 0.258819, -2.3246, 0, -0.965331)
+shape = SubResource("BoxShape3D_soyso")
+
+[node name="CollisionShape3D7" type="CollisionShape3D" parent="BGArea"]
+transform = Transform3D(-2.98023e-08, 0, 1, 0, 1, 0, -1, 0, -2.98023e-08, -2.45298, 0, 0.0353936)
+shape = SubResource("BoxShape3D_soyso")
+
+[node name="CollisionShape3D5" type="CollisionShape3D" parent="BGArea"]
+transform = Transform3D(0.707107, 0, -0.707107, 0, 1, 0, 0.707107, 0, 0.707107, 1.79556, 0, -1.80203)
+shape = SubResource("BoxShape3D_soyso")
+
+[node name="CollisionShape3D8" type="CollisionShape3D" parent="BGArea"]
+transform = Transform3D(-1, 0, 8.74228e-08, 0, 1, 0, -8.74228e-08, 0, -1, -0.0489881, 0, 2.43706)
+shape = SubResource("BoxShape3D_soyso")
+
+[node name="CollisionShape3D9" type="CollisionShape3D" parent="BGArea"]
+transform = Transform3D(-0.965926, 0, 0.258819, 0, 1, 0, -0.258819, 0, -0.965926, -1.02843, 0, 2.30834)
+shape = SubResource("BoxShape3D_soyso")
+
+[node name="CollisionShape3D10" type="CollisionShape3D" parent="BGArea"]
+transform = Transform3D(-0.965926, 0, -0.258819, 0, 1, 0, 0.258819, 0, -0.965926, 0.930012, 0, 2.30846)
+shape = SubResource("BoxShape3D_soyso")
+
+[node name="CollisionShape3D11" type="CollisionShape3D" parent="BGArea"]
+transform = Transform3D(-0.707107, 0, -0.707107, 0, 1, 0, 0.707107, 0, -0.707107, 1.763, 0, 1.82808)
+shape = SubResource("BoxShape3D_soyso")
+
+[node name="CollisionShape3D12" type="CollisionShape3D" parent="BGArea"]
+transform = Transform3D(-0.258819, 0, -0.965926, 0, 1, 0, 0.965926, 0, -0.258819, 2.25917, 0, 0.991757)
+shape = SubResource("BoxShape3D_soyso")
+
+[node name="CollisionShape3D13" type="CollisionShape3D" parent="BGArea"]
+transform = Transform3D(-5.76205e-08, 0, -1, 0, 1, 0, 1, 0, -5.76205e-08, 2.38755, 0, -0.00896788)
+shape = SubResource("BoxShape3D_soyso")
+
+[node name="CollisionShape3D14" type="CollisionShape3D" parent="BGArea"]
+transform = Transform3D(-0.707107, 0, 0.707107, 0, 1, 0, -0.707107, 0, -0.707107, -1.86099, 0, 1.82846)
+shape = SubResource("BoxShape3D_soyso")
+
+[node name="CollisionShape3D15" type="CollisionShape3D" parent="BGArea"]
+transform = Transform3D(-0.260505, 0, 0.965473, 0, 1, 0, -0.965473, 0, -0.260505, -2.32564, 0, 1.01732)
+shape = SubResource("BoxShape3D_soyso")
+
+[node name="CollisionShape3D16" type="CollisionShape3D" parent="BGArea"]
+transform = Transform3D(0.241939, 0, -0.970292, 0, 1, 0, 0.970292, 0, 0.241939, 2.27139, 0, -0.96476)
+shape = SubResource("BoxShape3D_soyso")

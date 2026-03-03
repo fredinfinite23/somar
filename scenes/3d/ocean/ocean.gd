@@ -53,6 +53,8 @@ func _ready() -> void:
 	for dolphin : DolphinBase in dolphins_parent.get_children():
 		dolphin.hunting = true
 
+	_show_end_ui()
+
 	await tree.create_timer(randf_range(min_boat_event_spawn_delay, max_boat_event_spawn_delay)).timeout
 	_start_boat_event()
 

@@ -33,7 +33,8 @@ func _ready() -> void:
 	lang_btn_portuguese.pressed.connect(_set_language.bind("pt"))
 
 	language_buttons.process_mode = Node.PROCESS_MODE_INHERIT
-	language_buttons.visible = true
+	if menu_option == AutoMenuStrings.OFF :
+		language_buttons.visible = true
 	language_buttons.global_position.y = Global.player.camera.global_position.y
 
 	# Global.player.fade(true)

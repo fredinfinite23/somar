@@ -14,6 +14,7 @@ enum AutoMenuStrings {
 # Very handy when in CubeMap mode (no pose, no contoller)
 @export_category("Automatic Menu")
 @export var menu_option : AutoMenuStrings = AutoMenuStrings.OFF
+@export var menu_timer : float
 
 @onready var ocean_btn : CustomBtn = %OceanBtn
 @onready var shore_btn : CustomBtn = %ShoreBtn
@@ -39,9 +40,13 @@ func _ready() -> void:
 	#Global.player.fade(true)
 
 	#await Global.player.fade_finished
-	animation_player.play("show_markers")
-	await animation_player.animation_finished
-	Global.player.input_enabled = true
+	if menu_option == AutoMenuStrings.OFF :
+		animation_player.play("show_markers")
+		await animation_player.animation_finished
+		Global.player.input_enabled = true
+	else :
+		ocean_btn.visible = false
+		shore_btn.visible = false
 	
 	assert(not Global.player.panorama_mode || (Global.player.panorama_mode && menu_option),\
 	"You MUST select a default Automatic menu behavior here in panorama_mode")
@@ -49,8 +54,12 @@ func _ready() -> void:
 	if menu_option != AutoMenuStrings.OFF :
 		await tree.create_timer(1.0).timeout
 		if menu_option == AutoMenuStrings.Coastal :
+			if menu_timer > 0.0 :
+				await get_tree().create_timer(menu_timer).timeout
 			_switch_to_scene("shore")
 		elif menu_option == AutoMenuStrings.Oceanic :
+			if menu_timer > 0.0 :
+				await get_tree().create_timer(menu_timer).timeout
 			_switch_to_scene("ocean")
 
 

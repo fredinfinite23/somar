@@ -1,4 +1,4 @@
-[gd_scene load_steps=36 format=3 uid="uid://c6y5y8pwspjr"]
+[gd_scene load_steps=37 format=3 uid="uid://c6y5y8pwspjr"]
 
 [ext_resource type="Script" uid="uid://bml6w7bexv7yh" path="res://scenes/3d/ocean/ocean.gd" id="1_qkda0"]
 [ext_resource type="Environment" uid="uid://yfafeqhg6bmg" path="res://scenes/3d/ocean/ocean_we.tres" id="2_hkvrg"]
@@ -7,10 +7,11 @@
 [ext_resource type="Shader" uid="uid://blm150tep44xv" path="res://scenes/3d/shared/materials/noise_textures/fake_sun_shader.gdshader" id="7_hx7jq"]
 [ext_resource type="PackedScene" uid="uid://cuwcpccmansiv" path="res://scenes/3d/main_menu/return_to_main_menu.tscn" id="7_jnhsx"]
 [ext_resource type="Curve3D" uid="uid://c7d1gsqe0b33w" path="res://scenes/3d/shared/perimeter_path_curve.tres" id="8_aqbnn"]
-[ext_resource type="PackedScene" uid="uid://br72xt5i0kf8e" path="res://scenes/3d/ocean/ui/ocean_initial_ui.tscn" id="8_b50c8"]
+[ext_resource type="PackedScene" uid="uid://br72xt5i0kf8e" path="res://scenes/3d/ocean/ui/XR/ocean_initial_ui.tscn" id="8_b50c8"]
 [ext_resource type="Texture2D" uid="uid://6s5pwmsl78ej" path="res://scenes/3d/shared/textures/fake_sun_gradient.png" id="8_plpqe"]
+[ext_resource type="PackedScene" uid="uid://b6gcscc5y2cks" path="res://scenes/3d/ocean/ui/Halfdome/ocean_final_ui_hd.tscn" id="9_iw6hf"]
 [ext_resource type="PackedScene" uid="uid://ds3xv7eus20gg" path="res://scenes/3d/boats/inflatable_patrol/inflatable_patrol_boat.tscn" id="9_omrdy"]
-[ext_resource type="PackedScene" uid="uid://dchup4y5cpp0u" path="res://scenes/3d/ocean/ui/ocean_final_ui.tscn" id="9_q1pty"]
+[ext_resource type="PackedScene" uid="uid://dchup4y5cpp0u" path="res://scenes/3d/ocean/ui/XR/ocean_final_ui_xr.tscn" id="9_q1pty"]
 [ext_resource type="PackedScene" uid="uid://d1pk5n2bivdw1" path="res://scenes/3d/animals/whales/blue/blue_whale_path.tscn" id="12_xgx7v"]
 [ext_resource type="PackedScene" uid="uid://cpst4kskfr8gj" path="res://scenes/3d/animals/whales/humpback/humpback_whale_path.tscn" id="13_fim7d"]
 [ext_resource type="Script" uid="uid://dsrx141j0cslx" path="res://utilities/SchoolFishPathFollow3D.gd" id="13_n4p2q"]
@@ -77,7 +78,7 @@ max_boat_event_spawn_delay = 20.0
 dolphin_audio_manager = NodePath("DolphinAudioManager")
 whale_event_delay = 3.0
 initial_ui = NodePath("UI/OceanInitialUI")
-final_ui = NodePath("UI/OceanFinalUi")
+final_ui = NodePath("UI/OceanFinalUi_HD")
 player_position = NodePath("PlayerPosition")
 
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
@@ -121,8 +122,13 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.93, 0)
 [node name="OceanInitialUI" parent="UI" instance=ExtResource("8_b50c8")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -1.8)
 
-[node name="OceanFinalUi" parent="UI" instance=ExtResource("9_q1pty")]
+[node name="OceanFinalUi_XR" parent="UI" instance=ExtResource("9_q1pty")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1.61168, -0.00519872)
+visible = false
+
+[node name="OceanFinalUi_HD" parent="UI" instance=ExtResource("9_iw6hf")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1.612, -0.005)
+visible = false
 
 [node name="ReturnToMainMenu" parent="." instance=ExtResource("7_jnhsx")]
 visible = false

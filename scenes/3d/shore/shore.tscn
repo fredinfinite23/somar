@@ -1,4 +1,4 @@
-[gd_scene load_steps=41 format=3 uid="uid://c1sswtpcofyfs"]
+[gd_scene load_steps=42 format=3 uid="uid://c1sswtpcofyfs"]
 
 [ext_resource type="Script" uid="uid://dr4ydatovkpiq" path="res://scenes/3d/shore/shore.gd" id="1_5fr5e"]
 [ext_resource type="Environment" uid="uid://bn8eowi3cxda3" path="res://scenes/3d/shore/shore_we.tres" id="2_l7j2l"]
@@ -6,14 +6,15 @@
 [ext_resource type="Material" uid="uid://cll86s32pe0b8" path="res://scenes/3d/shore/materials/shore_water_surface_highlights_material.tres" id="4_wn413"]
 [ext_resource type="Shader" uid="uid://blm150tep44xv" path="res://scenes/3d/shared/materials/noise_textures/fake_sun_shader.gdshader" id="7_7j3dv"]
 [ext_resource type="PackedScene" uid="uid://cuwcpccmansiv" path="res://scenes/3d/main_menu/return_to_main_menu.tscn" id="7_iabag"]
-[ext_resource type="PackedScene" uid="uid://vuoju6i7tukd" path="res://scenes/3d/shore/ui/shore_initial_ui.tscn" id="7_qdum6"]
+[ext_resource type="PackedScene" uid="uid://vuoju6i7tukd" path="res://scenes/3d/shore/ui/XR/shore_initial_ui.tscn" id="7_qdum6"]
 [ext_resource type="Material" uid="uid://cn7dx1ulrlcft" path="res://scenes/3d/shared/materials/underwater_caustics_material.tres" id="7_qv88s"]
 [ext_resource type="Texture2D" uid="uid://6s5pwmsl78ej" path="res://scenes/3d/shared/textures/fake_sun_gradient.png" id="8_2pji4"]
-[ext_resource type="PackedScene" uid="uid://b7d684bm0kkt6" path="res://scenes/3d/shore/ui/shore_final_ui.tscn" id="8_3ol5e"]
+[ext_resource type="PackedScene" uid="uid://b7d684bm0kkt6" path="res://scenes/3d/shore/ui/XR/shore_final_ui_xr.tscn" id="8_3ol5e"]
 [ext_resource type="ArrayMesh" uid="uid://di10f6f4p558b" path="res://scenes/3d/shore/mesh/sea_floor_Plane.res" id="8_51r74"]
 [ext_resource type="Shader" uid="uid://f3hs4uf0vwt4" path="res://scenes/3d/shore/materials/sea_floor_shader.gdshader" id="8_lqk5h"]
 [ext_resource type="Material" uid="uid://dbvislr8c0nty" path="res://scenes/3d/shore/materials/shore_floor_low_material.tres" id="9_2w87t"]
 [ext_resource type="Texture2D" uid="uid://bwwban3b8ool7" path="res://scenes/3d/shore/textures/Gravel039_1K-PNG_Color_AO.png" id="9_ahx2y"]
+[ext_resource type="PackedScene" uid="uid://blwtwcbwq54nk" path="res://scenes/3d/shore/ui/Halfdome/shore_final_ui_HD.tscn" id="9_taf2u"]
 [ext_resource type="Texture2D" uid="uid://cf52dgvdtgl6t" path="res://scenes/3d/shore/textures/shore_floor_mask_inv.png" id="11_iaate"]
 [ext_resource type="Script" uid="uid://bqwm7ba7t8t1v" path="res://utilities/CustomMeshInstance3D.gd" id="12_12eq2"]
 [ext_resource type="Curve3D" uid="uid://c7d1gsqe0b33w" path="res://scenes/3d/shared/perimeter_path_curve.tres" id="12_svdwg"]
@@ -84,7 +85,7 @@ dolphins_curious_amount_rate = 0.0
 scene_type = 1
 dolphin_audio_manager = NodePath("DolphinAudioManager")
 initial_ui = NodePath("UI/ShoreInitialUI")
-final_ui = NodePath("UI/ShoreFinalUi")
+final_ui = NodePath("UI/ShoreFinalUi_HD")
 player_position = NodePath("PlayerPosition")
 
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
@@ -123,10 +124,14 @@ transform = Transform3D(1, 0, 0, 0, 0.996639, -0.0819211, 0, 0.0819211, 0.996639
 
 [node name="ShoreInitialUI" parent="UI" instance=ExtResource("7_qdum6")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -1.8)
+
+[node name="ShoreFinalUi_XR" parent="UI" instance=ExtResource("8_3ol5e")]
+transform = Transform3D(1, 0, 0, 0, 0.996529, 0.0832427, 0, -0.0832427, 0.996529, -0.00400139, 2.33812, -0.203598)
 visible = false
 
-[node name="ShoreFinalUi" parent="UI" instance=ExtResource("8_3ol5e")]
-transform = Transform3D(1, 0, 0, 0, 0.996529, 0.0832427, 0, -0.0832427, 0.996529, 0.247149, 1.93532, -1.68105)
+[node name="ShoreFinalUi_HD" parent="UI" instance=ExtResource("9_taf2u")]
+transform = Transform3D(1, 0, 0, 0, 0.996493, 0.0836778, 0, -0.0836778, 0.996493, 0, 2.70117, -0.227642)
+visible = false
 
 [node name="ReturnToMainMenu" parent="." instance=ExtResource("7_iabag")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.05, 0)

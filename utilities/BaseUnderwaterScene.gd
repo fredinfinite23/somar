@@ -26,6 +26,8 @@ enum SceneType {
 @onready var humpback_whale_path : Node3D = %HumpbackWhalePath
 @onready var blue_whale_path : Node3D = %BlueWhalePath
 
+var effect_scene : PackedScene = null
+
 const CURVE_RADIUS : float = 20.0
 const PERIMETER_PATH_CURVE : Curve3D = preload("res://scenes/3d/shared/perimeter_path_curve.tres")
 const BOTTLENOSE_DOLPHIN_SCENE : PackedScene = preload("res://scenes/3d/animals/dolphins/bottlenose/bottlenose_dolphin.tscn")
@@ -96,6 +98,8 @@ func _ready() -> void:
 	#Global.player.fade(true)
 	AudioManager.fade(true, AudioManager.AudioBus.UNDERWATER)
 	#await Global.player.fade_finished
+
+	effect_scene = await ResourceManager.load_resource("res://scenes/3d/effects/water_break_effect.tscn")
 
 	_play_whale()
 
@@ -229,7 +233,6 @@ func _handle_whale_finished() -> void:
 
 
 func spawn_water_break_effect(dolphin : DolphinBase) -> void:
-	var effect_scene : PackedScene = await ResourceManager.load_resource("res://scenes/3d/effects/water_break_effect.tscn")
 	var effect_scene_inst : Node3D = effect_scene.instantiate()
 
 	add_child(effect_scene_inst)

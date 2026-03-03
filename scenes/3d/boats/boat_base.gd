@@ -218,7 +218,7 @@ func _stop_drift() -> void:
 	engine_tween.tween_property(
 		engine_idle_loop_audio_player,
 		"volume_db",
-		0.0,
+		-5.0,
 		1.0
 	)
 
@@ -283,7 +283,7 @@ func start_final_movement(delay : float = 0.0) -> void:
 
 	if engine_loop_audio_player.playing:
 		engine_loop_audio_player.stop()
-	AudioManager.set_bus_volume(5.0, AudioManager.AudioBus.BOATS, 0.3)
+	AudioManager.set_bus_volume(-15.0, AudioManager.AudioBus.BOATS, 0.3)
 	engine_start_stop_audio_player.stream = engine_start_audio
 	engine_start_stop_audio_player.play()
 
@@ -294,7 +294,7 @@ func start_final_movement(delay : float = 0.0) -> void:
 	engine_start_tween.tween_property(
 		engine_loop_audio_player,
 		"volume_db",
-		10.0,
+		5.0,
 		5.0
 	)
 

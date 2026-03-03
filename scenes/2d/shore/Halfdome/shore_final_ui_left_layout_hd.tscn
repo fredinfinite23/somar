@@ -1,0 +1,138 @@
+[gd_scene load_steps=6 format=3 uid="uid://brxtu5csx87u"]
+
+[ext_resource type="Texture2D" uid="uid://bdocdmd6hf3da" path="res://scenes/2d/textures/info_panel_bg.png" id="1_ecgdt"]
+[ext_resource type="Texture2D" uid="uid://bhjr2pg3dehv" path="res://scenes/2d/textures/final_ui/final_ui_purpoise.png" id="2_l86oo"]
+[ext_resource type="Theme" uid="uid://detpa4qnk63je" path="res://scenes/2d/info_plane_theme.tres" id="3_ayvo1"]
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_yp67b"]
+texture = ExtResource("1_ecgdt")
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_f2rol"]
+
+[node name="ShoreFinalUILeftLayout" type="Control"]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 1920.0
+offset_bottom = 1400.0
+
+[node name="BackgroundPanel" type="Panel" parent="."]
+layout_mode = 0
+offset_right = 1920.0
+offset_bottom = 1400.0
+theme_override_styles/panel = SubResource("StyleBoxTexture_yp67b")
+
+[node name="MarginContainer" type="MarginContainer" parent="."]
+layout_mode = 0
+offset_right = 1954.0
+offset_bottom = 1400.0
+theme_override_constants/margin_left = 75
+theme_override_constants/margin_top = 175
+theme_override_constants/margin_right = 75
+theme_override_constants/margin_bottom = 0
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer"]
+layout_mode = 2
+
+[node name="ImageContainer" type="HBoxContainer" parent="MarginContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 4
+
+[node name="Animal" type="TextureRect" parent="MarginContainer/VBoxContainer/ImageContainer"]
+layout_mode = 2
+texture = ExtResource("2_l86oo")
+
+[node name="TitleLabel" type="Label" parent="MarginContainer/VBoxContainer"]
+layout_mode = 2
+theme = ExtResource("3_ayvo1")
+theme_type_variation = &"TitleLabel"
+theme_override_font_sizes/font_size = 110
+text = "SHORE_FINAL_UI_L_LOC_NAME_HD"
+horizontal_alignment = 1
+
+[node name="HSeparator" type="HSeparator" parent="MarginContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_constants/separation = 75
+theme_override_styles/separator = SubResource("StyleBoxEmpty_f2rol")
+
+[node name="Size" type="HBoxContainer" parent="MarginContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_constants/separation = 4
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer/VBoxContainer/Size"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="MarginContainer/VBoxContainer/Size/VBoxContainer"]
+layout_mode = 2
+theme = ExtResource("3_ayvo1")
+theme_type_variation = &"LabelLabel"
+theme_override_font_sizes/font_size = 84
+text = "SHORE_FINAL_UI_L_SIZE_LABEL"
+
+[node name="Content" type="Label" parent="MarginContainer/VBoxContainer/Size"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme = ExtResource("3_ayvo1")
+theme_type_variation = &"ContentLabel"
+theme_override_font_sizes/font_size = 84
+text = "SHORE_FINAL_UI_L_SIZE_CONTENT_HD"
+autowrap_mode = 2
+
+[node name="Weight" type="HBoxContainer" parent="MarginContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_constants/separation = 4
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer/VBoxContainer/Weight"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="MarginContainer/VBoxContainer/Weight/VBoxContainer"]
+layout_mode = 2
+theme = ExtResource("3_ayvo1")
+theme_type_variation = &"LabelLabel"
+theme_override_font_sizes/font_size = 84
+text = "SHORE_FINAL_UI_L_WEIGHT_LABEL"
+
+[node name="Content" type="Label" parent="MarginContainer/VBoxContainer/Weight"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme = ExtResource("3_ayvo1")
+theme_type_variation = &"ContentLabel"
+theme_override_font_sizes/font_size = 84
+text = "SHORE_FINAL_UI_L_WEIGHT_CONTENT"
+autowrap_mode = 2
+
+[node name="Diet" type="HBoxContainer" parent="MarginContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_constants/separation = 4
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer/VBoxContainer/Diet"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="MarginContainer/VBoxContainer/Diet/VBoxContainer"]
+layout_mode = 2
+theme = ExtResource("3_ayvo1")
+theme_type_variation = &"LabelLabel"
+theme_override_font_sizes/font_size = 84
+text = "SHORE_FINAL_UI_L_DIET_LABEL"
+
+[node name="Content" type="Label" parent="MarginContainer/VBoxContainer/Diet"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme = ExtResource("3_ayvo1")
+theme_type_variation = &"ContentLabel"
+theme_override_font_sizes/font_size = 84
+text = "SHORE_FINAL_UI_L_DIET_CONTENT_HD"
+autowrap_mode = 2
+
+[node name="Habitat" type="HBoxContainer" parent="MarginContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_constants/separation = 4
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer/VBoxContainer/Habitat"]
+layout_mode = 2
+
+[node name="Fact" type="HBoxContainer" parent="MarginContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_constants/separation = 4
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer/VBoxContainer/Fact"]
+layout_mode = 2
